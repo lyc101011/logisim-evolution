@@ -1,0 +1,11 @@
+# AI Assistant Configuration
+# Copy this file to logisim-evolution.properties and set your API key
+
+# API Key for the AI service (Required)
+# api.key=your_api_key_here
+
+# Base URL for the API (Optional, defaults to https://api.openai.com/v1)
+# api.base.url=https://api.openai.com/v1
+
+# Model to use (Optional, defaults to gpt-3.5-turbo)
+# api.model=gpt-3.5-turbo
