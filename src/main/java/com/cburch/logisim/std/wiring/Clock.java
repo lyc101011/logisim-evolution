@@ -298,9 +298,10 @@ public class Clock extends InstanceFactory {
 
   @Override
   public void paintGhost(InstancePainter painter) {
-    final var bds = painter.getBounds();
-    final var x = bds.getX();
-    final var y = bds.getY();
+    final var loc = painter.getLocation();
+    final var bds = painter.getOffsetBounds();
+    final var x = loc.getX();
+    final var y = loc.getY();
     final var width = bds.getWidth();
     final var height = bds.getHeight();
     final var newAppear = painter.getAttributeValue(ProbeAttributes.PROBEAPPEARANCE).equals(ProbeAttributes.APPEAR_EVOLUTION_NEW);
@@ -309,9 +310,9 @@ public class Clock extends InstanceFactory {
     GraphicsUtil.switchToWidth(g, 2);
     g.setColor(Color.GRAY);
     if (newAppear) {
-      paintNewShape(painter, x, y, width, height, dir, true);
+      paintNewShape(painter, x - width, y - (height / 2), width, height, dir, true);
     } else {
-      g.drawRect(x, y, width, height);
+      g.drawRect(x - width, y - (height / 2), width, height);
     }
   }
 

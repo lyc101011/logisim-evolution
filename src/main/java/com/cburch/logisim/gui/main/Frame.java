@@ -113,6 +113,10 @@ public class Frame extends LFrame.MainWindow implements LocaleListener {
   private AppearanceView appearance;
   private Double lastFraction = AppPreferences.WINDOW_RIGHT_SPLIT.get();
   private final RegTabContent regTabContent;
+  // AI Assistant panel
+  private AiAssistantPanel aiAssistantPanel;
+  private HorizontalSplitPane mainAndAiPane;
+  private double aiAssistantFraction = 0.0; // Hidden by default
 
   public Frame(Project project) {
     super(project);
@@ -192,9 +196,13 @@ public class Frame extends LFrame.MainWindow implements LocaleListener {
     vhdlSimulatorConsole = new VhdlSimulatorConsole(project);
     editRegion = new HorizontalSplitPane(mainPanelSuper, hdlEditor, 1.0);
     rightRegion = new HorizontalSplitPane(editRegion, vhdlSimulatorConsole, 1.0);
+    // Initialize AI Assistant panel
+    aiAssistantPanel = new AiAssistantPanel(this, project);
 
     rightPanel = new JPanel(new BorderLayout());
-    rightPanel.add(rightRegion, BorderLayout.CENTER);
+    // Create a split pane for the main content and AI assistant
+    mainAndAiPane = new HorizontalSplitPane(rightRegion, aiAssistantPanel, 1.0); // Hidden by default
+    rightPanel.add(mainAndAiPane, BorderLayout.CENTER);
 
     final var state = new VhdlSimState(project);
     state.stateChanged();
@@ -229,6 +237,39 @@ public class Frame extends LFrame.MainWindow implements LocaleListener {
 
   public RegTabContent getRegTabContent() {
     return regTabContent;
+  }
+  
+  /**
+   * Shows or hides the AI Assistant panel.
+   * @param show true to show the panel, false to hide it
+   */
+  public void showAiAssistant(boolean show) {
+    if (mainAndAiPane != null) {
+      if (show) {
+        // Show the AI assistant panel (set fraction to 0.7 to give it 30% of the width)
+        mainAndAiPane.setFraction(0.7);
+        aiAssistantFraction = 0.7;
+      } else {
+        // Hide the AI assistant panel (set fraction to 1.0 to hide it completely)
+        mainAndAiPane.setFraction(1.0);
+        aiAssistantFraction = 0.0;
+      }
+    }
+  }
+  
+  /**
+   * Toggles the visibility of the AI Assistant panel.
+   */
+  public void toggleAiAssistant() {
+    if (mainAndAiPane != null) {
+      if (aiAssistantFraction > 0.9) {
+        // Currently hidden, so show it
+        showAiAssistant(true);
+      } else {
+        // Currently shown, so hide it
+        showAiAssistant(false);
+      }
+    }
   }
 
   /**
@@ -731,6 +772,10 @@ public class Frame extends LFrame.MainWindow implements LocaleListener {
     public void propertyChange(PropertyChangeEvent event) {
       if (AppPreferences.TOOLBAR_PLACEMENT.isSource(event)) {
         placeToolbar();
+      } else if ("showAiAssistant".equals(event.getPropertyName())) {
+        // Handle AI Assistant panel visibility
+        final var show = (Boolean) event.getNewValue();
+        showAiAssistant(show);
       }
     }
 

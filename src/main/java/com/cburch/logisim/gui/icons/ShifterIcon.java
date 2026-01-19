@@ -9,6 +9,7 @@
 
 package com.cburch.logisim.gui.icons;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.font.TextLayout;

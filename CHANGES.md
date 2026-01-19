@@ -3,17 +3,6 @@
 # Changes #
 
 * @dev (????-??-??)
-  * Enhanced Undo and Redo functionality:
-    * Added "Undo History" dropdown menu to view and select specific undo actions.
-    * Added "Redo History" dropdown menu to view and select specific redo actions.
-    * Added "Clear Undo/Redo History" menu item with confirmation dialog.
-    * Limited undo and redo history to a maximum of 64 actions.
-    * Retained standard single-step undo and redo functionality via menu item.
-  * Enhanced Counter component:
-    * Counter state can now be displayed in "State" tab alongside registers.
-    * Counter state can now drive "Assembly viewer" address.
-
-* v4.0.0 (2025-09-07)
   * Updated VHDL and created Verilog generator for RAM component with byte-enables
   * Added VHDL and Verilog for the RAM component with line-enables
   * fixed clasic appearance shift-register bug
@@ -42,7 +31,6 @@
     * Updated Pin documentation.
   * Subcircuits with clock input(s) are now drawn with a clock symbol.
   * Added TTL 74194: 4-bit bidirectional universal shift register.
-  * Improved the English, French, and German localization. Smaller fixes were done to the other languages as well.
 
 * v3.9.0 (2024-08-15)
   * Updated Java requirement to Java 21.

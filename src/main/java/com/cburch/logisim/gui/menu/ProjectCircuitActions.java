@@ -87,11 +87,8 @@ public class ProjectCircuitActions {
   }
 
   public static void doAddCircuit(Project proj) {
-    String initialValue = "";
-    while (true) {
-      final var name = promptForCircuitName(proj.getFrame(), proj.getLogisimFile(), initialValue);
-      if (name == null) break;
-
+    final var name = promptForCircuitName(proj.getFrame(), proj.getLogisimFile(), "");
+    if (name != null) {
       String error = null;
       /* Checking for valid names */
       if (name.isEmpty()) {
@@ -106,16 +103,13 @@ public class ProjectCircuitActions {
           error = "\"" + name + "\": " + S.get("circuitNameInvalidName") + "\n" + nameMessage;
         }
       }
-
       if (error != null) {
         OptionPane.showMessageDialog(
             proj.getFrame(), error, S.get("circuitCreateTitle"), OptionPane.ERROR_MESSAGE);
-        initialValue = name;
       } else {
         final var circuit = new Circuit(name, proj.getLogisimFile(), proj);
         proj.doAction(LogisimFileActions.addCircuit(circuit));
         proj.setCurrentCircuit(circuit);
-        break;
       }
     }
   }
@@ -141,23 +135,12 @@ public class ProjectCircuitActions {
   }
 
   public static void doAddVhdl(Project proj) {
-    String initialValue = "";
-    while (true) {
-      final var name = promptForNewName(proj.getFrame(), proj.getLogisimFile(), initialValue, true);
-      if (name == null) break;
-
-      if (VhdlContent.labelVHDLInvalidNotify(name, proj.getLogisimFile())) {
-        initialValue = name;
-        continue;
-      }
-
+    final var name = promptForVhdlName(proj.getFrame(), proj.getLogisimFile(), "");
+    if (name != null) {
       final var content = VhdlContent.create(name, proj.getLogisimFile());
       if (content != null) {
         proj.doAction(LogisimFileActions.addVhdl(content));
         proj.setCurrentHdlModel(content);
-        break;
-      } else {
-        initialValue = name;
       }
     }
   }

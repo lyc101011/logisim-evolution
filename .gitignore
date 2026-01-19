@@ -87,6 +87,9 @@ local.properties
 *_REMOTE_*.txt
 
 ### Java ###
+# User configuration
+logisim-evolution.properties
+
 # Compiled class file
 *.class
 

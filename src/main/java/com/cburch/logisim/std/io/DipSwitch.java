@@ -120,8 +120,7 @@ public class DipSwitch extends InstanceFactory {
   }
 
   public static final int MAX_SWITCH = 32;
-  // MODIFIED: Changed minimum width from 2 to 1 to allow single DIP switch
-  public static final int MIN_SWITCH = 1;
+  public static final int MIN_SWITCH = 2;
 
   public static final Attribute<BitWidth> ATTR_SIZE =
       Attributes.forBitWidth("number", S.getter("nrOfSwitch"), MIN_SWITCH, MAX_SWITCH);

@@ -141,6 +141,7 @@ public class RV32imControlTransferInstructions implements AbstractExecutionUnitW
   }
 
   @Override
+  @SuppressWarnings("fallthrough")
   public String getAsmInstruction() {
     if (!valid)
       return null;
@@ -181,6 +182,7 @@ public class RV32imControlTransferInstructions implements AbstractExecutionUnitW
   }
 
   @Override
+  @SuppressWarnings("fallthrough")
   public String getAsmInstruction(String label) {
     if (!valid)
       return null;

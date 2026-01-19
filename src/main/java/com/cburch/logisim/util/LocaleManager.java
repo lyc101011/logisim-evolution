@@ -58,16 +58,16 @@ public class LocaleManager {
   }
 
   private static class LocaleFormatterWithString extends LocaleGetter {
-    final Object [] args;
+    final String arg;
 
-    LocaleFormatterWithString(LocaleManager source, String key, String... args) {
+    LocaleFormatterWithString(LocaleManager source, String key, String arg) {
       super(source, key);
-      this.args = args;
+      this.arg = arg;
     }
 
     @Override
     public String toString() {
-      return source.get(key, args);
+      return source.fmt(key, arg);
     }
   }
 
@@ -289,8 +289,8 @@ public class LocaleManager {
     return new LocaleGetter(this, key);
   }
 
-  public StringGetter getter(String key, String... args) {
-    return new LocaleFormatterWithString(this, key, args);
+  public StringGetter getter(String key, String arg) {
+    return new LocaleFormatterWithString(this, key, arg);
   }
 
   public StringGetter getter(String key, StringGetter arg) {

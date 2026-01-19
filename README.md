@@ -50,6 +50,22 @@ It requires [Java 21 (or newer)](https://adoptium.net/temurin/releases/).
 
 ---
 
+## AI Assistant Configuration ##
+
+To use the AI Assistant features, you need to configure your API key.
+
+1.  Copy the template file: `cp logisim-evolution.properties.template logisim-evolution.properties`
+2.  Edit `logisim-evolution.properties` and add your API key:
+    ```properties
+    api.key=sk-your-api-key-here
+    # api.base.url=https://api.openai.com/v1
+    # api.model=gpt-3.5-turbo
+    ```
+The application will look for `logisim-evolution.properties` in the current directory or your user home directory.
+Alternatively, you can set the environment variables `OPENAI_API_KEY`, `OPENAI_BASE_URL`, and `OPENAI_MODEL`.
+
+---
+
 ## Download ###
 
 `Logisim-evolution` is available for
@@ -122,8 +138,8 @@ a new `Nightly build` is created at midnight [UTC](https://en.wikipedia.org/wiki
 
 Note that these builds may be unstable since the main branch is a work in progress.
 
-To get nightly downloads, please go to the
-[nightly workflow page](https://github.com/logisim-evolution/logisim-evolution/actions/workflows/nightly.yml)
+To get nightly downloads, please
+[click here](https://github.com/logisim-evolution/logisim-evolution/actions/workflows/nightly.yml)
 and browse to the last successful build from the `Nightly` worker.
 Nightly runs each night, but terminates quickly and does not produce new packages if nothing has changed since the last run.
 Find the most recent run that contains the packages.

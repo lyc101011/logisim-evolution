@@ -36,7 +36,6 @@ class CounterAttributes extends AbstractAttributeSet {
               StdAttr.LABEL,
               StdAttr.LABEL_FONT,
               StdAttr.LABEL_LOC,
-              Register.ATTR_SHOW_IN_TAB,
               StdAttr.APPEARANCE
             },
             new Object[] {
@@ -47,7 +46,6 @@ class CounterAttributes extends AbstractAttributeSet {
               "",
               StdAttr.DEFAULT_LABEL_FONT,
               Direction.NORTH,
-              false,
               AppPreferences.getDefaultAppearance()
             });
   }

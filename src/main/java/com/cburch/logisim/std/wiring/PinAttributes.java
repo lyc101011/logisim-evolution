@@ -81,6 +81,7 @@ class PinAttributes extends ProbeAttributes {
     return lbl.matches("(?i).*(clk|clock).*");
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public <V> void setValue(Attribute<V> attr, V value) {
     if (attr == StdAttr.WIDTH) {

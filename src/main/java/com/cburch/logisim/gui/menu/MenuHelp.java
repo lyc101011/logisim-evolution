@@ -37,6 +37,7 @@ class MenuHelp extends JMenu implements ActionListener {
   private final JMenuItem library = new JMenuItem();
   private final JMenuItem about = new JMenuItem();
   private final JMenuItem www = new JMenuItem();
+  private final JMenuItem aiAssistant = new JMenuItem();
   private HelpSet helpSet;
   private String helpSetUrl = "";
   private JHelp helpComponent;
@@ -50,10 +51,13 @@ class MenuHelp extends JMenu implements ActionListener {
     library.addActionListener(this);
     about.addActionListener(this);
     www.addActionListener(this);
+    aiAssistant.addActionListener(this);
 
     add(tutorial);
     add(guide);
     add(library);
+    addSeparator();
+    add(aiAssistant);
     if (browserIntegrationSupported()) {
       addSeparator();
       add(www);
@@ -77,6 +81,8 @@ class MenuHelp extends JMenu implements ActionListener {
       About.showAboutDialog(menubar.getParentFrame());
     } else if (www.equals(src)) {
       openProjectWebsite();
+    } else if (aiAssistant.equals(src)) {
+      showAiAssistant();
     }
   }
 
@@ -153,6 +159,7 @@ class MenuHelp extends JMenu implements ActionListener {
     library.setText(S.get("helpLibraryItem"));
     about.setText(S.get("helpAboutItem"));
     www.setText(S.get("helpProjectWebsite"));
+    aiAssistant.setText(S.get("helpAiAssistantItem"));
     if (helpFrame != null) {
       helpFrame.setLocale(Locale.getDefault());
       loadBroker();
@@ -169,6 +176,14 @@ class MenuHelp extends JMenu implements ActionListener {
       disableHelp();
       e.printStackTrace();
       OptionPane.showMessageDialog(menubar.getParentFrame(), S.get("helpDisplayError"));
+    }
+  }
+  
+  private void showAiAssistant() {
+    // Show the AI assistant panel directly
+    final var parentFrame = menubar.getParentFrame();
+    if (parentFrame instanceof com.cburch.logisim.gui.main.Frame mainFrame) {
+      mainFrame.showAiAssistant(true);
     }
   }
 }

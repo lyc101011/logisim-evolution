@@ -33,6 +33,7 @@ import com.cburch.logisim.tools.MenuExtender;
 import com.cburch.logisim.util.GraphicsUtil;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class SocBus extends SocInstanceFactory {

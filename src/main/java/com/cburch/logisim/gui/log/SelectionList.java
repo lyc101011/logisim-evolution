@@ -207,6 +207,7 @@ public class SelectionList extends JTable {
 
   private Model logModel;
 
+  @SuppressWarnings("unchecked")
   public SelectionList() {
     setModel(new SelectionListModel());
     setDefaultRenderer(SignalInfo.class, new SignalInfoRenderer());
